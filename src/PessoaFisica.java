@@ -22,7 +22,5 @@ public class PessoaFisica extends Pessoa {
         } else {
             return rendimento * .05f;
         }
-
-
     }
 }

@@ -7,8 +7,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         ArrayList<PessoaFisica> listaPf = new ArrayList<>();
-
         PessoaFisica metodoPf = new PessoaFisica();
+
+        ArrayList<PessoaJuridica> listaPj = new ArrayList<>();
+        PessoaJuridica metodoPj = new PessoaJuridica();
 
 
         System.out.println("Bem Vindo ao sistema de cadastro de Pessoas Fisicas e Juridicas");
@@ -103,9 +105,82 @@ public class Main {
 
                     } while (!opcaoPf.equals("0"));
 
-                case "2":
-                    System.out.println("caso 2");
                     break;
+
+                case "2":
+
+                    String opcaoPj;
+                    do{
+                        System.out.println("Digite uma opcao: 1-Cadastrar PJ / 2-Listar PJ / 0-Voltar");
+                        opcaoPj = leitor.nextLine();
+
+                        switch (opcaoPj){
+                            case "1":
+                                PessoaJuridica novaPj = new PessoaJuridica();
+                                Endereco novoEndPj = new Endereco();
+
+                                System.out.println("Digite o nome");
+                                novaPj.nome = leitor.nextLine();
+
+                                System.out.println("Digite a Razao Social");
+                                novaPj.razaoSocial = leitor.nextLine();
+
+                                System.out.println("Digite o cnpj");
+                                novaPj.cnpj = leitor.nextLine();
+
+                                System.out.println("Digite o rendimento");
+                                novaPj.rendimento = leitor.nextFloat();
+
+
+                                System.out.println("Digite o logradouro");
+                                novoEndPj.logradouro = leitor.next();
+
+                                System.out.println("Digite o numero");
+                                novoEndPj.numero = leitor.nextInt();
+
+                                System.out.println("Este endereco e comercial ? S/N");
+                                String endCon = leitor.next();
+                                if (endCon.equals("S") || endCon.equals("s")) {
+                                    novoEndPj.endComercial = true;
+                                } else {
+                                    novoEndPj.endComercial = false;
+                                }
+
+                                novaPj.endereco = novoEndPj;
+
+                                listaPj.add(novaPj);
+
+                                System.out.println("Cadastro realizado com sucesso!");
+
+                                break;
+
+                            case "2":
+
+                                if (listaPj.size() > 0) {
+
+                                    for (PessoaJuridica cadaPj : listaPj) {
+                                        System.out.println("Nome: " + cadaPj.nome);
+                                        System.out.println("Razao Social: " + cadaPj.razaoSocial);
+                                        System.out.println("CNPJ: " + cadaPj.cnpj);
+                                        System.out.println("Endereco: " + cadaPj.endereco.logradouro + " - " + cadaPj.endereco.numero);
+                                        System.out.println("Imposto a ser pago: " + metodoPj.CaucularImposto(metodoPj.rendimento));
+                                        System.out.println("Aperte ENTER para continuar");
+                                        leitor.nextLine(); // so parar para o sistema.
+                                    }
+
+                                } else {
+                                    System.out.println("Lista Vazia!'");
+                                }
+
+                                break;
+                            case "0":
+                                System.out.println("Voltar");
+                                break;
+                            default:
+                                System.out.println("Opcao Invalida");
+                                break;
+                        }
+                    }while (!opcaoPj.equals("0"));
 
                 case "0":
                     System.out.println("caso 0");
