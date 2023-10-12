@@ -19,7 +19,7 @@ public class Main {
 
         String opcao;
         do {
-            System.out.println("Escolha uma opcao: 1-Pessoa Fisica/ 2-Pessoa juridica / 0-Voltar");
+            System.out.println("Escolha uma opcao: 1-Pessoa Fisica/ 2-Pessoa juridica / 0-Sair");
             opcao = leitor.nextLine();
 
             switch (opcao) {
